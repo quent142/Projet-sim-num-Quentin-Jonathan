@@ -21,6 +21,11 @@ def func(A,B,u_0,v_0, t_f, h) :
     der_v.append(dvdt)
     return u,v,t,der_u,der_v
 
-a,b,t,du,dv = func(1,2,0,0,100,0.1)
-plt.plot(t,a)
-plt.plot(t,du)
+fig1 = plt.figure()
+fig1.suptitle('Brusselator 0D')
+ax1 = fig1.add_subplot(121)
+ax1.plot(t,a,label = 'composant u')
+ax1.plot(t,b,label = 'composant v')
+
+ax2 = fig1.add_subplot(122)
+ax2.plot(b,a, label = 'u en fonction de v')
