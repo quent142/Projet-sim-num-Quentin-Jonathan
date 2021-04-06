@@ -29,3 +29,5 @@ ax1.plot(t,b,label = 'composant v')
 
 ax2 = fig1.add_subplot(122)
 ax2.plot(b,a, label = 'u en fonction de v')
+
+plt.legend()
