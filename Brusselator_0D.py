@@ -6,6 +6,8 @@ def func(A,B,u_0,v_0, t_f, N) :
     u = [u_0]
     v = [v_0]
     t = np.linspace(0,t_f,N+1)
+    der_u = []
+    der_v = []
     for i in range(N) :
         dudt = A + v[-1]*u[-1]**2 - B*u[-1] - u[-1]
         der_u.append(dudt)
