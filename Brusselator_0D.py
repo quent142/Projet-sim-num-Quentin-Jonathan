@@ -18,6 +18,26 @@ def eul_av(A,B,u_0,v_0, t_f, N) :
         u.append(u[-1] + h*dudt(u[-1],v[-1],A,B))
         v.append(v[-1] + h*dvdt(u[-1],v[-1],A,B))
     return u,v,t
+
+def rk4(A,B,u_0,v_0, t_f, N) :
+    h = t_f/N
+    u = [u_0]
+    v = [v_0]
+    t = np.linspace(0,t_f,N+1)
+    for i in range(N) :
+        k1 = h*dudt(u[-1],v[-1],A,B)
+        j1 = h*dvdt(u[-1],v[-1],A,B)
+        k2 = h*dudt(u[-1] + k1/2,v[-1] + j1/2,A,B)
+        j2 = h*dvdt(u[-1] + k1/2,v[-1] + j1/2,A,B)
+        k3 = h*dudt(u[-1] + k2/2,v[-1] + j2/2,A,B)
+        j3 = h*dvdt(u[-1] + k2/2,v[-1] + j2/2,A,B)
+        k4 = h*dudt(u[-1] + k3,v[-1] + j3,A,B)
+        j4 = h*dvdt(u[-1] + k3,v[-1] + j3,A,B)
+        u.append(u[-1] + (k1 + 2*k2 + 2*k3 + k4)/6)
+        v.append(v[-1] + (j1 + 2*j2 + 2*j3 + j4)/6)
+    return u,v,t
+
+
 #------
 A = 1
 n_b = 25
