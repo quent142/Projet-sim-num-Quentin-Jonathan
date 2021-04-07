@@ -19,7 +19,7 @@ def func(A,B,u_0,v_0, t_f, N) :#j'ai changer h en N
         u.append(u[-1] + h*dudt)
         v.append(v[-1] + h*dvdt)
         t.append(t[-1] + h)
-    dudt = A + v[-1]*u[-1]**2 - B*u[-1] - u[-1]#Est-ce vraiment utile de calculer ces dérivées?
+    dudt = A + v[-1]*u[-1]**2 - B*u[-1] - u[-1]#Est-ce vraiment utile de calculer ces dérivées? Et aussi de les sortir de la fct?
     der_u.append(dudt)
     dvdt = B*u[-1] - v[-1]*u[-1]**2
     der_v.append(dvdt)
