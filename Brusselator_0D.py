@@ -2,7 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 def func(A,B,u_0,v_0, t_f, N) :#j'ai changer h en N
-    #le h peut causer des problème avec t (on peut se retrouver avec t[-1]>t_f), je change un peu le code pour que ça aille mieux,
+    #le h peut causer des problème avec t (on peut se retrouver avec t[-1]>t_f si on ne défini pas bien h),
+    #je change un peu le code pour que ça aille mieux et qu'on demande un nombre de pas de temps,
     #mais je me dis que ce serait peut-être mieux d'utiliser linspace
     h = t_f/N #ici je défini h
     u = [u_0]
