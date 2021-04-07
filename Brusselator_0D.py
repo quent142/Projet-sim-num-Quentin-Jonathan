@@ -10,9 +10,7 @@ def func(A,B,u_0,v_0, t_f, N) :
     der_v = []
     for i in range(N) :
         dudt = A + v[-1]*u[-1]**2 - B*u[-1] - u[-1]
-        der_u.append(dudt)
         dvdt = B*u[-1] - v[-1]*u[-1]**2
-        der_v.append(dvdt)
         u.append(u[-1] + h*dudt)
         v.append(v[-1] + h*dvdt)
     return u,v,t
