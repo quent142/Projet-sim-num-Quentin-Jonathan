@@ -28,10 +28,10 @@ def func(A,B,u_0,v_0, t_f, N) :#j'ai changer h en N
 fig1 = plt.figure()
 fig1.suptitle('Brusselator 0D')
 ax1 = fig1.add_subplot(121)
-ax1.plot(t,a,label = 'composant u')
-ax1.plot(t,b,label = 'composant v')
+ax1.plot(t,u,label = 'composant u')
+ax1.plot(t,v,label = 'composant v')
 plt.legend()
 
 ax2 = fig1.add_subplot(122)
-ax2.plot(b,a, label = 'u en fonction de v')
+ax2.plot(v,u, label = 'u en fonction de v')
 plt.legend()
