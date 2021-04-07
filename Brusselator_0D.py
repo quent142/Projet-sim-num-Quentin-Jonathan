@@ -32,7 +32,7 @@ U = []
 V = []
 
 for bi in B:
-    a, b, t, deru, derv = func(A, bi, u_0, v_0, t_f, N)
+    a, b, t = func(A, bi, u_0, v_0, t_f, N)
     U.append(a)
     V.append(b)
 
