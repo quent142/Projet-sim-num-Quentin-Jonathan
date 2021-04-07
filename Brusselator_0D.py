@@ -14,7 +14,7 @@ def func(A,B,u_0,v_0, t_f, N) :
         u.append(u[-1] + h*dudt)
         v.append(v[-1] + h*dvdt)
     return u,v,t
-
+#------
 A = 1
 n_b = 26
 B = np.linspace(0, 5, n_b)
@@ -49,7 +49,7 @@ hl3, = ax2.plot([],[])
 def update_line(hl, new_datax, new_datay):
     hl.set_xdata(new_datax)
     hl.set_ydata(new_datay)
-    plt.draw()
+    
 
 for i in range(n_b):
     hl.axes.set_ylim(0, max(max(U[i]), max(V[i]))+0.5)
@@ -63,5 +63,6 @@ for i in range(n_b):
     update_line(hl2, t, V[i])
     
     update_line(hl3, U[i],V[i])
+    plt.draw()
     plt.pause(1e-17)
     time.sleep(0.1)
