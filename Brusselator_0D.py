@@ -1,16 +1,22 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+def dudt(u,v,A,B) :
+    der_u = A + v*u**2 - B*u - u
+    return der_u
+
+def dvdt(u,v,A,B) :
+    der_v = B*u - v*u**2
+    return der_v
+
 def eul_av(A,B,u_0,v_0, t_f, N) :
     h = t_f/N
     u = [u_0]
     v = [v_0]
     t = np.linspace(0,t_f,N+1)
     for i in range(N) :
-        dudt = A + v[-1]*u[-1]**2 - B*u[-1] - u[-1]
-        dvdt = B*u[-1] - v[-1]*u[-1]**2
-        u.append(u[-1] + h*dudt)
-        v.append(v[-1] + h*dvdt)
+        u.append(u[-1] + h*dudt(u[-1],v[-1],A,B))
+        v.append(v[-1] + h*dvdt(u[-1],v[-1],A,B))
     return u,v,t
 #------
 A = 1
