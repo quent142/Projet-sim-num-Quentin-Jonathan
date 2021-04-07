@@ -45,7 +45,6 @@ def rk4(A,B,u_0,v_0, t_f, h) :
 A = 1
 n_b = 26
 B = np.linspace(0, 5, n_b)
-print(B)
 for i in range(n_b):
     B[i] = int(B[i]*1000)/1000
 t_f = 100
