@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-def func(A,B,u_0,v_0, t_f, N) :
+def eul_av(A,B,u_0,v_0, t_f, N) :
     h = t_f/N
     u = [u_0]
     v = [v_0]
@@ -28,7 +28,7 @@ U = []
 V = []
 
 for bi in B:
-    a, b, t = func(A, bi, u_0, v_0, t_f, N)
+    a, b, t = eul_av(A, bi, u_0, v_0, t_f, N)
     U.append(a)
     V.append(b)
 
