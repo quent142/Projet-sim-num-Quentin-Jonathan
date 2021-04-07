@@ -1,29 +1,19 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-def func(A,B,u_0,v_0, t_f, N) :#j'ai changer h en N
-    #le h peut causer des problème avec t (on peut se retrouver avec t[-1]>t_f si on ne défini pas bien h),
-    #je change un peu le code pour que ça aille mieux et qu'on demande un nombre de pas de temps,
-    #mais je me dis que ce serait peut-être mieux d'utiliser linspace
-    h = t_f/N #ici je défini h
+def func(A,B,u_0,v_0, t_f, N) :
+    h = t_f/N
     u = [u_0]
     v = [v_0]
-    t = [0]
-    der_u = []
-    der_v = []
-    while t[-1] < t_f :
+    t = np.linspace(0,t_f,N+1)
+    for i in range(N) :
         dudt = A + v[-1]*u[-1]**2 - B*u[-1] - u[-1]
         der_u.append(dudt)
         dvdt = B*u[-1] - v[-1]*u[-1]**2
         der_v.append(dvdt)
         u.append(u[-1] + h*dudt)
         v.append(v[-1] + h*dvdt)
-        t.append(t[-1] + h)
-    dudt = A + v[-1]*u[-1]**2 - B*u[-1] - u[-1]#Est-ce vraiment utile de calculer ces dérivées? Et aussi de les sortir de la fct?
-    der_u.append(dudt)
-    dvdt = B*u[-1] - v[-1]*u[-1]**2
-    der_v.append(dvdt)
-    return u,v,t,der_u,der_v
+    return u,v,t
 
 fig1 = plt.figure()
 fig1.suptitle('Brusselator 0D')
