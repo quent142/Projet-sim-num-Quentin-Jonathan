@@ -1,6 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import time
 
 def func(A,B,u_0,v_0, t_f, N) :
     h = t_f/N
@@ -63,5 +62,4 @@ for i in range(n_b):
     
     update_line(hl3, U[i],V[i])
     plt.draw()
-    plt.pause(1e-17)
-    time.sleep(0.1)
+    plt.pause(0.1)
