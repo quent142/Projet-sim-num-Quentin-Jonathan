@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import time
 
 def func(A,B,u_0,v_0, t_f, N) :
     h = t_f/N
