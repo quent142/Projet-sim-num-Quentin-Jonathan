@@ -16,22 +16,24 @@ B = 3
 D_u = 10
 
 x = np.linspace(0,50,int(50/h) + 1)
-y = np.zeros(int(50/h) + 1)
-z = np.zeros(int(50/h) + 1)
+u = np.zeros(int(50/h) + 1)
+v = np.zeros(int(50/h) + 1)
+time = 10
 plt.xlim(0,1)
 plt.ylim(0,5)
-line1, = plt.plot(x,y)
-line2, = plt.plot(x,z)
-for i in range(1000) :
-    y_g = np.append(y[1 :],y[-1])
-    y_d = np.append(y[0],y[: -1])
-    z_g = np.append(z[1 :],z[-1])
-    z_d = np.append(z[0],z[: -1])
-    y_ = y + k*(dudt(y,z,A,B) + D_u*(y_g - 2*y + y_d)/h**2)
-    z_ = z + k*(dvdt(y,z,A,B) + 10*(z_g - 2*z + z_d)/h**2)
-    y = y_
-    z = z_
-    plt.pause(0.1)
+line1, = plt.plot(x,u, label = 'composant u')
+line2, = plt.plot(x,v, label = 'composant v')
+plt.legend()
+for i in range(int(time/k)) :
+    u_g = np.append(u[1 :],u[-1])
+    u_d = np.append(u[0],u[: -1])
+    v_g = np.append(v[1 :],v[-1])
+    v_d = np.append(v[0],v[: -1])
+    u_ = u + k*(dudt(u,v,A,B) + D_u*(u_g - 2*u + u_d)/h**2)
+    v_ = v + k*(dvdt(u,v,A,B) + 10*(v_g - 2*v + v_d)/h**2)
+    u = u_
+    v = v_
+    plt.pause(k)
     
-    line1.set_ydata(y)
-    line2.set_ydata(z)
+    line1.set_ydata(u)
+    line2.set_ydata(v)
