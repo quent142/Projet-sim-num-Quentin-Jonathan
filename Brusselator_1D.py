@@ -25,7 +25,10 @@ v = np.zeros(N)
 for i in range(N) :
     u[i] = rd.uniform(0,5)
     v[i] = rd.uniform(0,5)
-
+u[-1] = u [-2]
+u[0] = u[1]
+v[-1] = v[-2]
+v[0] = v[1] 
 plt.xlim(0,50)
 plt.ylim(-1,5)
 line1, = plt.plot(x,u, label = 'composant u')
@@ -46,6 +49,10 @@ for i in range(int(time/k)) :
     J4 = k*(dvdt(u + K3,v + J3,A,B) + 10*(v_g - 2*v + v_d)/h**2)
     u += (K1 + 2*K2 + 2*K3 + K4)/6
     v += (J1 + 2*J2 + 2*J3 + J4)/6 
+    u[-1] = u [-2]
+    u[0] = u[1]
+    v[-1] = v[-2]
+    v[0] = v[1] 
     plt.pause(k)
     line1.set_ydata(u)
     line2.set_ydata(v)
