@@ -39,9 +39,12 @@ cst_u = D_u*k/h**2
 cst_v = D_v*k/h**2
 A_u = (1+2*cst_u)*np.eye(N) - cst_u*np.eye(N,k=-1) - cst_u*np.eye(N,k=1)
 A_v = (1+2*cst_v)*np.eye(N,N) - cst_v*np.eye(N,k=-1) - cst_v*np.eye(N,k=1)
+A_u[0,0],A_u[0,1],A_u[-1,-1],A_u[-1,-2] = 1,-1,1,-1
+A_v[0,0],A_v[0,1],A_v[-1,-1],A_v[-1,-2] = 1,-1,1,-1
 for i in range(int(time/k)) :
     B_u = u + k*(A + v*u**2 - B*u - u)
     B_v = v + k*(B*u - v*u**2)
+    B_u[0],B_u[-1],B_v[0],B_v[-1] = 0,0,0,0
     u = np.linalg.solve(A_u,B_u)
     v = np.linalg.solve(A_v,B_v)
     print(u[-1])
