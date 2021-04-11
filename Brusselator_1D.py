@@ -68,3 +68,4 @@ for i in range(int(time/k)) :
     plt.pause(k)
     line1.set_ydata(u)
     line2.set_ydata(v)
+    plt.draw()
