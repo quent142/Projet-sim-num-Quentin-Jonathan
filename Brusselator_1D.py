@@ -40,6 +40,7 @@ plt.ylim(-1,5)
 line1, = plt.plot(x,u, label = 'composant u')
 line2, = plt.plot(x,v, label = 'composant v')
 plt.legend()
+plt.show()
 
 #définition des matrices et constantes utilisées
 cst_u = D_u*k/h**2
