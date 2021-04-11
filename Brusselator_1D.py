@@ -35,7 +35,7 @@ for i in range(N) :
     v[i,0] = rd.uniform(0,5)
     
 #respect des conditions aux bords
-u[0,0] = u[-1,0]
+u[0,0] = u[1,0]
 u[-1,0] = u[-2,0]
 v[0,0] = v[1,0]
 v[-1,0] = v[-2,0]
