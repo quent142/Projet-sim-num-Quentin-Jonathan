@@ -15,7 +15,7 @@ def dvdt(u,v,A,B) :
 h = 1
 k = 0.01
 A = 1
-B = 5
+B = 3
 D_u = 10
 D_v = 10
 N = int(50/h) + 1
