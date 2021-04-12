@@ -65,6 +65,7 @@ for i in range(T) :
     v[:,i+1] = np.linalg.solve(A_v,B_v)
  
 #définition du graphe
+plt.xlabel("t = 0")
 plt.xlim(0,50)
 if u.max() > v.max() :
     plt.ylim(-1,u.max()+1)
@@ -78,6 +79,7 @@ plt.show()
 #animation du graphe
 for i in range(T+1) :
     plt.pause(k)
+    plt.xlabel("t = {}".format(int(100*i*k)/100))
     line1.set_ydata(u[:,i])
     line2.set_ydata(v[:,i])
     plt.draw()
