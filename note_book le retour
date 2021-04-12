@@ -399,7 +399,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "Le code est présent dans Brusselator_1D.py, mais il s'agit d'une animation. Comme notebook a du mal à faire tourner des animations sans ass-on, on va intégrer des vidéos."
+    "Le code est présent dans Brusselator_1D.py, mais il s'agit d'une animation. Comme notebook a du mal à faire tourner des animations sans ass-on, on montrera des graphes à différent temps."
    ]
   },
   {
