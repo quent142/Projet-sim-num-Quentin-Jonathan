@@ -74,7 +74,6 @@ else :
 line1, = plt.plot(x,u[:,0], label = 'u')
 line2, = plt.plot(x,v[:,0], label = 'v')
 plt.legend(bbox_to_anchor=(1.0001, 1),loc='upper left')
-plt.show()
 
 #animation du graphe
 for i in range(T+1) :
