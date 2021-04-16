@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import random as rd
 
-#définition des dérivée partielles par rapport au temps
+#définition des fonctions F, vu que c'est les mêmes que sur brusselator 0D, on garde la même notation
 def dudt(u,v,A,B) :
     der_u = A + v*u**2 - B*u - u
     return der_u
