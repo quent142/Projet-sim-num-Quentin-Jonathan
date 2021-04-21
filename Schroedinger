@@ -1,0 +1,30 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+#--------Function-----------
+def ampl(psi):
+    pass
+
+def g (x, dt, K, psi):#progression due à dt
+    return np.exp(-1j*K*ampl(psi)*dt)*psi
+
+def gk (g):#g mais dans l'espace spectral
+    return 
+    pass
+
+def psi_k_plus():#psi en t+dt dans l'espace spectral
+    pass
+
+def psi_plus():#psi_k mais dans l'espace physique
+    pass
+
+def psi_init(dom):
+    pass
+#--------Computing-----------
+
+N = 1024
+dt = 0.01
+
+K = -1
+
+dom = np.linspace(-20, 20, 41)
