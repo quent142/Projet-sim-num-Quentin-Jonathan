@@ -3,14 +3,14 @@ import matplotlib.pyplot as plt
 
 #--------Function-----------
 
-def ampl(psi):
-    pass
+def ampl_carré(psi):
+    return psi * np.conj(psi)
 
 def g (x, dt, K, psi):#progression due à dt
-    return np.exp(-1j*K*ampl(psi)*dt)*psi
+    return np.exp(-1j * dt * K * ampl_carré(psi)) * psi
 
 def gk (g, N):#g mais dans l'espace spectral
-    return np.fft.fftshift(np.fft.fft(g))/N
+    return np.fft.fftshift(np.fft.fft(g))/(N+1)
 
 def psi_k_plus(gk, N, dt, dom_k, L):#psi en t+dt dans l'espace spectral
     return np.exp(-(1j/2)*dt*(2*np.pi* dom_k /L)**2) * gk
