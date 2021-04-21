@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 #--------Function-----------
-#problem -> différence entre L, dom_k et dom_x
+
 def ampl(psi):
     pass
 
@@ -12,18 +12,19 @@ def g (x, dt, K, psi):#progression due à dt
 def gk (g, N):#g mais dans l'espace spectral
     return np.fft.fftshift(np.fft.fft(g))/N
 
-def psi_k_plus(gk, N, dt):#psi en t+dt dans l'espace spectral
-    return np.exp(-(1j/2)*dt*(2*np.pi* domdom / (N+1))**2) * gk  #problem -> domdom est quel truc et est ce que N+1 est L
+def psi_k_plus(gk, N, dt, dom_k, L):#psi en t+dt dans l'espace spectral
+    return np.exp(-(1j/2)*dt*(2*np.pi* dom_k /L)**2) * gk
 
 def psi_plus(psi_k_plus):#psi_k mais dans l'espace physique
     return np.fft.ifft(np.fft.ifftshift(psi_k_plus))
 
-def psi_init(dom):
-    return 0.5 + 0.01 * np.cos(2*np.pi * dom / 40)
+def psi_init(dom_x):
+    return 0.5 + 0.01 * np.cos(2*np.pi * dom_x / 40)
 #--------Computing-----------
 
 N = 1024
 dt = 0.01
 K = -1
-
-dom = np.linspace(-20, 20, N+1)
+L = 40
+dom_x = np.linspace(-int(L/2), int(L/2), N+1)
+dom_k = np.linspace(-N/2,(N/2)-1, N+1)
