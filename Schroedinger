@@ -7,7 +7,7 @@ def get_g (dt, K, psi):#progression due à dt
     return np.exp(-1j * dt * K * np.abs(psi)**2) * psi
 
 def get_gk (g, N):#g mais dans l'espace spectral
-    return np.fft.fftshift(np.fft.fft(g))/(N)
+    return np.fft.fftshift(np.fft.fft(g))#/(N)
 
 def psi_k_plus(gk, N, dt, dom_k, L):#psi en t+dt dans l'espace spectral
     return np.exp(-(1j/2)*dt*(2*np.pi* dom_k /L)**2) * gk
@@ -18,29 +18,28 @@ def psi_plus(psi_k_plus):#psi_k mais dans l'espace physique
 def psi_init(dom_x):
     return 0.5 + 0.01 * np.cos(2*np.pi * dom_x / 40)
 
+
 #--------Computing-----------
 
 N = 1024
 dt = 0.01
 K = -1
 L = 40
+t = 200
 
 dom_x = np.arange(-int(L/2),int(L/2), L/N)
 dom_k = np.linspace(-N/2,(N/2)-1, N)
-dom_t = np.linspace(0, 200, int(200/dt)+1)
+dom_t = np.linspace(0, t, int(t/dt)+1)
 
-#matrice 0
-psi = np.zeros((N, int(200/dt)+1), dtype= complex)
+psi = np.zeros((N, int(t/dt)+1), dtype= complex)
 psi[:,0] = psi_init(dom_x)
 
 for i in range(len(dom_t)-1):
    g = get_g(dt, K, psi[:,i])
-   #if i < 30:
-   #    print(g)
+   
    gk = get_gk(g, N)
    psi_kn = psi_k_plus(gk, N, dt, dom_k, L)
    psi_xn = psi_plus(psi_kn)
-   
    psi[:,i+1] = psi_xn
    
 amp_psi = np.abs(psi)
@@ -48,7 +47,7 @@ amp_psi = np.abs(psi)
 [xx,tt] = np.meshgrid(dom_x, dom_t)
 plt.contourf(xx,tt,np.transpose(amp_psi))
 
-#plt.plot(dom_x,psi[:,0])
+plt.plot(dom_x,psi[:,0])
 
 
 
