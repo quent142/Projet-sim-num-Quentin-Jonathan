@@ -6,10 +6,10 @@ import matplotlib.pyplot as plt
 def ampl_carré(psi):
     return psi * np.conj(psi)
 
-def g (x, dt, K, psi):#progression due à dt
+def get_g (dt, K, psi):#progression due à dt
     return np.exp(-1j * dt * K * ampl_carré(psi)) * psi
 
-def gk (g, N):#g mais dans l'espace spectral
+def get_gk (g, N):#g mais dans l'espace spectral
     return np.fft.fftshift(np.fft.fft(g))/(N+1)
 
 def psi_k_plus(gk, N, dt, dom_k, L):#psi en t+dt dans l'espace spectral
@@ -27,4 +27,20 @@ dt = 0.01
 K = -1
 L = 40
 dom_x = np.linspace(-int(L/2), int(L/2), N+1)
-dom_k = np.linspace(-N/2,(N/2)-1, N+1)
+dom_k = np.linspace(-N/2,(N/2), N+1)
+
+psi = [psi_init(dom_x)]
+amp_psi = [np.sqrt(ampl_carré(psi[0]))]
+for i in range(N):
+   g = get_g(dt, K, psi[-1])
+   if i < 10 : 
+       print(g)
+   gk = get_gk(g, N)
+   psi_kn = psi_k_plus(gk, N, dt, dom_k, L)
+   psi_xn = psi_plus(psi_kn)
+   psi.append(psi_xn)
+   amp_psi.append(np.sqrt(ampl_carré(psi_xn))
+
+ax1 = plt.plot(dom_x, amp_psi[0])
+ax2 = plt.plot(dom_x, amp_psi[1])
+#ax3 = plt.plot(dom_x, psi[-10])
