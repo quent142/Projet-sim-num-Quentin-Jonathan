@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 #--------Function-----------
 
 def ampl_carré(psi):
-    return psi * np.conj(psi)
+    return np.real(psi * np.conj(psi))
 
 def get_g (dt, K, psi):#progression due à dt
     return np.exp(-1j * dt * K * ampl_carré(psi)) * psi
@@ -41,6 +41,5 @@ for i in range(N):
    psi.append(psi_xn)
    amp_psi.append(np.sqrt(ampl_carré(psi_xn)))
 
-ax1 = plt.plot(dom_x, amp_psi[0])
-ax2 = plt.plot(dom_x, amp_psi[1])
-#ax3 = plt.plot(dom_x, psi[-10])
+t = np.linspace(0,N*dt,N+1)
+plt.contourf(dom_x,t,amp_psi)
