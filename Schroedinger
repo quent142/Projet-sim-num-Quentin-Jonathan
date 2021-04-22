@@ -43,3 +43,4 @@ for i in range(N):
 
 t = np.linspace(0,N*dt,N+1)
 plt.contourf(dom_x,t,amp_psi)
+plt.show()
