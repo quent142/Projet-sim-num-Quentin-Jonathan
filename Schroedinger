@@ -3,14 +3,11 @@ import matplotlib.pyplot as plt
 
 #--------Function-----------
 
-def ampl_carré(psi):
-    return np.real(psi * np.conj(psi))
-
 def get_g (dt, K, psi):#progression due à dt
-    return np.exp(-1j * dt * K * ampl_carré(psi)) * psi
+    return np.exp(-1j * dt * K * np.abs(psi)**2) * psi
 
 def get_gk (g, N):#g mais dans l'espace spectral
-    return np.fft.fftshift(np.fft.fft(g))/(N+1)
+    return np.fft.fftshift(np.fft.fft(g))/(N)
 
 def psi_k_plus(gk, N, dt, dom_k, L):#psi en t+dt dans l'espace spectral
     return np.exp(-(1j/2)*dt*(2*np.pi* dom_k /L)**2) * gk
@@ -20,27 +17,40 @@ def psi_plus(psi_k_plus):#psi_k mais dans l'espace physique
 
 def psi_init(dom_x):
     return 0.5 + 0.01 * np.cos(2*np.pi * dom_x / 40)
+
 #--------Computing-----------
 
 N = 1024
 dt = 0.01
 K = -1
 L = 40
-dom_x = np.linspace(-int(L/2), int(L/2), N+1)
-dom_k = np.linspace(-N/2,(N/2), N+1)
 
-psi = [psi_init(dom_x)]
-amp_psi = [np.sqrt(ampl_carré(psi[0]))]
-for i in range(N):
-   g = get_g(dt, K, psi[-1])
-   if i < 10 : 
-       print(g)
+dom_x = np.arange(-int(L/2),int(L/2), L/N)
+dom_k = np.linspace(-N/2,(N/2)-1, N)
+dom_t = np.linspace(0, 200, int(200/dt)+1)
+
+#matrice 0
+psi = np.zeros((N, int(200/dt)+1), dtype= complex)
+psi[:,0] = psi_init(dom_x)
+
+for i in range(len(dom_t)-1):
+   g = get_g(dt, K, psi[:,i])
+   #if i < 30:
+   #    print(g)
    gk = get_gk(g, N)
    psi_kn = psi_k_plus(gk, N, dt, dom_k, L)
    psi_xn = psi_plus(psi_kn)
-   psi.append(psi_xn)
-   amp_psi.append(np.sqrt(ampl_carré(psi_xn)))
+   
+   psi[:,i+1] = psi_xn
+   
+amp_psi = np.abs(psi)
 
-t = np.linspace(0,N*dt,N+1)
-plt.contourf(dom_x,t,amp_psi)
-plt.show()
+[xx,tt] = np.meshgrid(dom_x, dom_t)
+plt.contourf(xx,tt,np.transpose(amp_psi))
+
+#plt.plot(dom_x,psi[:,0])
+
+
+
+
+
