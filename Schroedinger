@@ -39,7 +39,7 @@ for i in range(N):
    psi_kn = psi_k_plus(gk, N, dt, dom_k, L)
    psi_xn = psi_plus(psi_kn)
    psi.append(psi_xn)
-   amp_psi.append(np.sqrt(ampl_carré(psi_xn))
+   amp_psi.append(np.sqrt(ampl_carré(psi_xn)))
 
 ax1 = plt.plot(dom_x, amp_psi[0])
 ax2 = plt.plot(dom_x, amp_psi[1])
