@@ -45,7 +45,7 @@ for i in range(len(dom_t)-1):
 amp_psi = np.abs(psi)
 
 [xx,tt] = np.meshgrid(dom_x, dom_t)
-plt.contourf(xx,tt,np.transpose(amp_psi),100)
+plt.contourf(xx,tt,np.transpose(amp_psi),50)
 
 plt.plot(dom_x,psi[:,0])
 
