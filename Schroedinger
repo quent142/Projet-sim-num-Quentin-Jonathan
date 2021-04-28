@@ -6,10 +6,10 @@ import matplotlib.pyplot as plt
 def get_g (dt, K, psi):#progression due à dt
     return np.exp(-1j * dt * K * np.abs(psi)**2) * psi
 
-def get_gk (g, N):#g mais dans l'espace spectral
-    return np.fft.fftshift(np.fft.fft(g))#/(N)
+def get_gk (g):#g mais dans l'espace spectral
+    return np.fft.fftshift(np.fft.fft(g))
 
-def psi_k_plus(gk, N, dt, dom_k, L):#psi en t+dt dans l'espace spectral
+def psi_k_plus(gk, dt, dom_k, L):#psi en t+dt dans l'espace spectral
     return np.exp(-(1j/2)*dt*(2*np.pi* dom_k /L)**2) * gk
 
 def psi_plus(psi_k_plus):#psi_k mais dans l'espace physique
@@ -37,15 +37,15 @@ psi[:,0] = psi_init(dom_x)
 for i in range(len(dom_t)-1):
    g = get_g(dt, K, psi[:,i])
    
-   gk = get_gk(g, N)
-   psi_kn = psi_k_plus(gk, N, dt, dom_k, L)
+   gk = get_gk(g)
+   psi_kn = psi_k_plus(gk, dt, dom_k, L)
    psi_xn = psi_plus(psi_kn)
    psi[:,i+1] = psi_xn
    
 amp_psi = np.abs(psi)
 
 [xx,tt] = np.meshgrid(dom_x, dom_t)
-plt.contourf(xx,tt,np.transpose(amp_psi),50)
+plt.contourf(xx,tt,np.transpose(amp_psi))
 
 plt.plot(dom_x,psi[:,0])
 
