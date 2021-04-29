@@ -20,7 +20,7 @@ def psi_init(dom_x):
 
 #--------Computing-----------
 
-N = 2**6
+N = 2**10
 dt = 0.01
 K_neg = -1
 K_pos = 1
