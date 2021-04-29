@@ -61,8 +61,6 @@ ax1 = fig1.add_subplot(121)
 ax1.set_title("K=-1")   
 cf1 = ax1.contourf(xx,tt,np.transpose(amp_psi_neg))
 
-ax1.locator_params(nbins=4)
-
 ax2 = fig1.add_subplot(122)
 ax2.set_title("K=1")
 cf2 = ax2.contourf(xx,tt,np.transpose(amp_psi_pos))
