@@ -20,7 +20,7 @@ def psi_init(dom_x):
 
 #--------Computing-----------
 
-N = 1024
+N = 2**6
 dt = 0.01
 K_neg = -1
 K_pos = 1
@@ -59,9 +59,13 @@ amp_psi_neg = np.abs(psi_neg)
 fig1 = plt.figure()
 ax1 = fig1.add_subplot(121)
 ax1.set_title("K=-1")   
-ax1=plt.contourf(xx,tt,np.transpose(amp_psi_neg))
+cf1 = ax1.contourf(xx,tt,np.transpose(amp_psi_neg))
 
+ax1.locator_params(nbins=4)
 
 ax2 = fig1.add_subplot(122)
 ax2.set_title("K=1")
-ax2=plt.contourf(xx,tt,np.transpose(amp_psi_pos))
+cf2 = ax2.contourf(xx,tt,np.transpose(amp_psi_pos))
+
+fig1.colorbar(cf1, ax=ax1)
+fig1.colorbar(cf2, ax=ax2)
