@@ -1,4 +1,4 @@
-This github is just a complement for the reports on moodle. All files related to Brusselator are in french, other ones are in english.
+This github is a complement for the reports on moodle. All files related to Brusselator are in french, other ones are in english.
 
 Brusselator_0D contains an animation of the system (u,v) in 0D according to the parameter B.
 Brusselator_1D contains an animation of the system (x,u),(x,v) in 1D according to the time.
