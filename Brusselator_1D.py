@@ -12,14 +12,14 @@ def dvdt(u,v,A,B) :
     return der_v
 
 #définition des paramètres
-h = 1
-k = 0.01
+h = 1 #pas d'espace
+k = 0.01 #pas de temps
 A = 1
 B = 3
 D_u = 10
 D_v = 10
 N = int(50/h) + 1
-time = 15
+time = 15 #temps final
 T = int(time/k)
 
 #discrétisation
