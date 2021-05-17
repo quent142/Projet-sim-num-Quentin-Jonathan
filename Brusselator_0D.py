@@ -98,5 +98,5 @@ for i in range(n_b+1): #lancement de l'animation
     
     update_line(h3, U[i],V[i])
     
-    plt.draw()
-    plt.pause(0.3) #intervale entre 2 images
+    plt.draw() #mise à jour du plot
+    plt.pause(0.2) #intervale entre 2 images
